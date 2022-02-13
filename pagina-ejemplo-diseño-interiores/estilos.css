@@ -1,0 +1,744 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Fraunces&family=Roboto&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+
+/*estilos del generales*/
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Fraunces', serif;
+}
+
+img {
+    display: block;
+    width: 100%;
+    /*el max-with es para que las img no se salgan del ancho*/
+}
+
+p {
+    line-height: 25px;
+    /*para la separacion interlineada*/
+}
+
+
+/*estilos del header*/
+
+.container--flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*arregla margen titulo, estaba muy abajo*/
+}
+
+.main-header {
+    padding: 0 15px;
+}
+
+.main-title {
+    color: white;
+}
+
+.color-span {
+    color: #EEAD33;
+}
+
+
+/*estilos del menu*/
+
+.icon-menu {
+    font-size: 1.5em;
+    color: #EEAD33;
+    border: 1px solid white;
+    display: block;
+    padding: 5px 10px;
+    /*el 5 para arriba y abajo, el 10 para izquierda y derecha*/
+    border-radius: 5px;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.menu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #212121;
+    width: 100%;
+    list-style: none;
+    padding: 2px;
+    margin: 0;
+    opacity: 0;
+    /*lo hace invisible pero esta*/
+    visibility: hidden;
+    /*lo oculta*/
+    /*se pone aca para la clase mostrar de js*/
+    transition: all 0.5s;
+    /*para la animacion, display none, no se puede animar, opacity si*/
+}
+
+.menu__item {
+    padding: 20px;
+    text-align: center;
+    /*separacion de las esquinas*/
+    width: 150px;
+    /*para que centre*/
+    margin: auto;
+}
+
+.menu__link {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: block;
+}
+
+.menu__link:before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-right: 2px solid #EEAD33;
+    border-top: 2px solid #EEAD33;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    /*opacity 0 oculta, esto es para la parte del efecto del menu*/
+}
+
+
+/*primeros elementos de las esquinas*/
+
+.menu__link:after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-left: 2px solid #EEAD33;
+    border-bottom: 2px solid #EEAD33;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+}
+
+
+/*segundos elementos de las esquinas*/
+
+.menu__link span:before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-left: 2px solid #EEAD33;
+    border-top: 2px solid #EEAD33;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.menu__link span:after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-bottom: 2px solid #EEAD33;
+    border-right: 2px solid #EEAD33;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.menu__link span {
+    padding: 15px;
+    font-size: 1.2em;
+    display: block;
+    /*al block lo tienen que tener el menu__link y este para que funcione*/
+    /*para separar las 4 esquinas */
+}
+
+.menu__link--select:before,
+.menu__link--select:after,
+.menu__link--select span:before,
+.menu__link--select span:after {
+    /*al home le devolvemos la opacidad, para q solo se vea este y los demas se muestren como hover*/
+    opacity: 1;
+}
+
+.menu__item:hover .menu__link:before,
+.menu__item:hover .menu__link:after,
+.menu__item:hover .menu__link span:before,
+.menu__item:hover .menu__link span:after {
+    /*devolvemos opacidad a los demas en forma de hover*/
+    opacity: 1;
+}
+
+
+/*menu social*/
+
+.nav-social {
+    display: flex;
+    justify-content: center;
+}
+
+
+/*general para los 3 iconos*/
+
+.nav-social__item {
+    width: 35px;
+    height: 35px;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.nav-social__item i {
+    color: white;
+}
+
+
+/*le ponemos fondo a los iconos sociales, el primero es fb*/
+
+.nav-social__item:first-child {
+    /*first-child es un selector*/
+    background: #3b5998;
+}
+
+
+/*segundo icono, twt*/
+
+.nav-social__item:nth-child(2) {
+    /*nth-child(2) es un selector para el segundo hijo*/
+    background: #1da1f2;
+}
+
+.nav-social__item:nth-child(3) {
+    /*selector para el tercero*/
+    background: #f09433;
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+}
+
+.nav-social__item:first-child:hover {
+    background: #282828;
+}
+
+.nav-social__item:nth-child(2):hover {
+    background: #282828;
+}
+
+.nav-social__item:nth-child(3):hover {
+    background: #282828;
+}
+
+
+/*clase de js mostrar*/
+
+.mostrar {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/*estilos del banner*/
+
+.banner {
+    background: url(img/design-banner.jpg);
+    min-height: 450px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -999;
+    /*para que este atras*/
+}
+
+.banner__txt {
+    text-transform: uppercase;
+}
+
+.banner:before {
+    /*el before es para crear un elemento a partir de otro, el after es lo mismo*/
+    /*el content define el elemento, si fuese un texto se le pone ese atributo entre las comillas*/
+    content: "";
+    width: 100%;
+    min-height: 450px;
+    background: rgba(0, 0, 0, 0.6);
+    /*rgba opacidad. en este caso tiene un 60% (0.6)*/
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.banner__content {
+    width: 100%;
+    padding: 15px;
+    position: absolute;
+    /*para centrarlo*/
+    top: 60%;
+    left: 50%;
+    /*para poder moverlo a voluntad. pero tmb se podia usar display flex*/
+    transform: translateX(-50%) translateY(-50%);
+    color: white;
+    font-size: 1.3em;
+}
+
+
+/*estilos main*/
+
+.main {
+    margin-top: 500px;
+    /*baja o sube el banner, porque tiene position absolute entonces pierde posicion, podemos sacarle el absolute o hacer esto*/
+}
+
+.section__title {
+    text-transform: uppercase;
+    font-size: 2em;
+    position: relative;
+    text-align: center;
+    /*necesario para el position absolute de abajo*/
+}
+
+.section__title:before {
+    /*esto es como el divider*/
+    content: "";
+    width: 200px;
+    /*el porcentaje se adapta el px queda fijo */
+    position: absolute;
+    /*si no tiene el position relative el ancestro no funciona pq es segun donde este posicionado el ancestro, asi queda ubicado dentro de title*/
+    height: 3px;
+    background: #EEAD33;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.welcome {
+    text-align: center;
+    padding: 20px;
+    max-width: 750px;
+    margin: auto;
+    /*auto para centrar*/
+}
+
+.welcome-txt {
+    font-size: 1.2em;
+    color: #777;
+    font-family: 'Cinzel', serif;
+}
+
+.welcome-btn {
+    display: block;
+    border: 2px solid #EEAD33;
+    width: 200px;
+    margin: auto;
+    /*para centrarlo*/
+    padding: 10px;
+    text-decoration: none;
+    color: #EEAD33;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: all 0.5s;
+    /*animacion hover*/
+}
+
+.welcome-btn:hover {
+    background: #EEAD33;
+    color: white;
+}
+
+.container-desing {
+    margin: 20px 0;
+}
+
+.design-item {
+    position: relative;
+    /*necesario para poner el absolute al titulo, porque si no se va afuera*/
+}
+
+.design-item:before {
+    /*pseudo elemenmto para el fondo negro*/
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.design-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    /*esto es para centrar un elemento cuando uso p.absolute*/
+    color: #fff;
+    font-size: 1.8em;
+    width: 100%;
+    text-align: center;
+}
+
+.design-title:before {
+    /*esto es como el divider*/
+    content: "";
+    width: 200px;
+    position: absolute;
+    /*si no tiene el position relative el ancestro no funciona pq es segun donde este posicionado el ancestro, asi queda ubicado dentro de title*/
+    height: 3px;
+    background: #EEAD33;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.design-title:after {
+    /*esto es como el divider*/
+    content: "";
+    width: 200px;
+    position: absolute;
+    /*si no tiene el position relative el ancestro no funciona pq es segun donde este posicionado el ancestro, asi queda ubicado dentro de title*/
+    height: 3px;
+    background: #EEAD33;
+    bottom: -25px;
+    /*este after (dsp del elemento) es el divider de abajo, por eso el bottom*/
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container-testimonials {
+    margin: 60px 0;
+    max-width: 600px;
+    margin: auto;
+    /*para que no se estire a un solo renglon*/
+}
+
+.testimonials__img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    /*el cover es para que no se distorcione*/
+    margin: auto;
+}
+
+.testimonials__txt {
+    text-align: center;
+    padding: 20px;
+}
+
+.testimonials__name {
+    text-align: center;
+    font-size: 1.4em;
+    color: #EEAD33;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+    padding: 10px;
+}
+
+.box__content {
+    width: 70%;
+}
+
+.box__icon {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: #EEAD33;
+}
+
+.box__icon:hover {
+    color: black;
+}
+
+.box__title {
+    color: #EEAD33;
+    margin: 0;
+}
+
+.box__txt {
+    color: #999;
+}
+
+.newsletter {
+    margin: 50px 0;
+}
+
+.form {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.form__mail {
+    display: block;
+    background: #ddd;
+    padding: 17px;
+    width: 75%;
+    border: none;
+    font-size: 1em;
+}
+
+.form__submit {
+    display: block;
+    background: #EEAD33;
+    border: none;
+    padding: 15px;
+    width: 20%;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    border: 2px solid #EEAD33;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+.form__submit:hover {
+    color: #EEAD33;
+    background: white;
+}
+
+.main-footer {
+    /*contiene las columnas*/
+    background: #282828;
+    color: #828282;
+    display: flex;
+    flex-wrap: wrap;
+    /*wrap lo acomoda en col*/
+    justify-content: space-between;
+}
+
+.footer__title {
+    font-size: 1.8em;
+    color: white;
+}
+
+.column--50-25 {
+    width: 49%;
+    padding: 20px;
+}
+
+.footer__author {
+    text-align: right;
+    color: #EEAD33;
+    display: block;
+    /*block para sacarle el inline y poder moverlo a la derecha*/
+}
+
+.footer__txt .fa-twitter {
+    color: #3bbef5;
+    margin-right: 5px;
+    /*de tweets*/
+    /*se especifica que esta dentro del txt porque sino se pone cuadrado*/
+}
+
+.footer__link {
+    color: #EEAD33;
+}
+
+.footer__date {
+    font-size: .8em;
+    border-bottom: 1px solid #888;
+    /*bottom son las lineas grises*/
+    padding: 10px;
+    color: white;
+}
+
+
+/*iconos de conect*/
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    /*padding y center aliean los iconos con el texto*/
+}
+
+.social-icon i {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 50%;
+    color: white;
+}
+
+.social__link {
+    display: block;
+    text-decoration: none;
+    color: #828282;
+}
+
+.social__link:hover {
+    color: #EEAD33;
+}
+
+.social-icon .fa-facebook-f {
+    background: #3b5998;
+    /*especificar dentro de que clase estan para que no se cruce con los otros iconos*/
+}
+
+.social-icon .fa-twitter {
+    background: #3bbef5;
+}
+
+.social-icon .fa-basketball {
+    background: #f7659b;
+}
+
+.social-icon .fa-pinterest {
+    background: #e23139;
+}
+
+
+/*contact*/
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+}
+
+.fa-phone {
+    color: white;
+    display: block;
+    margin-right: 10px;
+}
+
+.fa-location-dot {
+    color: white;
+    display: block;
+    margin-right: 10px;
+}
+
+.fa-envelope {
+    color: white;
+    display: block;
+    margin-right: 10px;
+}
+
+.copy {
+    background: #212121;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+
+/*media para tablet*/
+
+
+/*max-width cuando es de escritorio a movil, aca empezamos por el movil*/
+
+@media screen and (min-width:768px) {
+    .menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        width: auto;
+        display: flex;
+        background: none;
+        font-size: .8em;
+    }
+    .menu__item {
+        width: auto;
+    }
+    .icon-menu {
+        display: none;
+    }
+    .main-title {
+        font-size: 2.5em;
+        padding: 10px;
+    }
+    .menu {
+        font-size: 1em;
+    }
+    .banner {
+        min-height: 500px;
+    }
+    .banner:before {
+        min-height: 500px;
+    }
+    .banner__title,
+    .banner__txt {
+        font-size: 1.5em;
+    }
+    .main {
+        margin-top: 400px;
+    }
+    .box {
+        justify-content: center;
+    }
+    .box__icon {
+        margin-right: 30px;
+    }
+}
+
+
+/*para escritorio*/
+
+@media screen and (min-width:1024px) {
+    .container {
+        /*para limitar contenido y no se pegue la letra al final*/
+        width: 1200px;
+        margin: auto;
+    }
+    .banner {
+        min-height: 600px;
+    }
+    .banner:before {
+        min-height: 600px;
+    }
+    /*si se baja el banner tambien el main*/
+    .main {
+        margin-top: 500px;
+    }
+    .container-desing,
+    .container-tips {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .design-item {
+        width: 50%;
+    }
+    .container-box {
+        width: 50%;
+    }
+    .container-tips .design__img {
+        height: 100%;
+        /*object-fit: cover;*/
+        /*objfit para que no se estire la imagen*/
+    }
+    .column--50-25 {
+        width: 24%;
+    }
+}
